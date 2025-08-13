@@ -106,7 +106,7 @@ export function LogarithmicCalculator() {
                         />
                     </div>
                     <TabsContent value="custom" forceMount className="p-0 m-0">
-                        <div className={cn('space-y-4', logType !== 'custom' && 'hidden')}>
+                        <div className={`space-y-4 ${logType !== 'custom' ? 'hidden' : ''}`}>
                            <Label htmlFor="base">Base</Label>
                            <Input
                                id="base"

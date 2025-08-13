@@ -1,4 +1,4 @@
-import type {NextConfig} from 'next';
+import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
   /* config options here */
@@ -7,6 +7,15 @@ const nextConfig: NextConfig = {
   },
   eslint: {
     ignoreDuringBuilds: true,
+  },
+  experimental: {
+    serverActions: {
+      allowedOrigins: [
+        'localhost:9002',
+        '127.0.0.1:9002',
+        '192.168.99.9:9002'
+      ]
+    }
   },
   images: {
     remotePatterns: [

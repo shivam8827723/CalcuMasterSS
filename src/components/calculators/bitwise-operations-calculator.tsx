@@ -1,7 +1,8 @@
 "use client"
 
-import { useState, useMemo } from 'react';
+import React, { useState, useMemo } from 'react';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from '@/components/ui/card';
+import { Separator } from '@/components/ui/separator';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
@@ -9,7 +10,6 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Copy, History, Binary } from 'lucide-react';
 import { useToast } from "@/hooks/use-toast";
 import { useHistory } from '@/hooks/use-history';
-import { Separator } from '@/components/ui/separator';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 
 type Operation = 'AND' | 'OR' | 'XOR' | 'NOT' | 'LSHIFT' | 'RSHIFT';
@@ -85,15 +85,15 @@ export function BitwiseOperationsCalculator() {
     <div className="flex justify-center items-start h-full">
       <Card className="max-w-lg w-full mx-auto">
         <CardHeader>
-            <div className="flex items-center gap-4">
-                <div className="bg-primary/10 text-primary p-3 rounded-full">
-                    <Binary className="h-6 w-6" />
-                </div>
-                <div>
-                  <CardTitle>Bitwise Operations</CardTitle>
-                  <CardDescription>Perform bitwise operations on integers.</CardDescription>
-                </div>
+          <div className="flex items-center gap-4">
+            <div className="bg-primary/10 text-primary p-3 rounded-full">
+              <Binary className="h-6 w-6" />
             </div>
+            <div>
+              <CardTitle>Bitwise Operations</CardTitle>
+              <CardDescription>Perform bitwise operations on integers.</CardDescription>
+            </div>
+          </div>
         </CardHeader>
         <CardContent className="space-y-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -118,8 +118,8 @@ export function BitwiseOperationsCalculator() {
                     <SelectItem value="OR">OR (|)</SelectItem>
                     <SelectItem value="XOR">XOR (^)</SelectItem>
                     <SelectItem value="NOT">NOT (~)</SelectItem>
-                    <SelectItem value="LSHIFT">Left Shift (<<)</SelectItem>
-                    <SelectItem value="RSHIFT">Right Shift (>>)</SelectItem>
+                    <SelectItem value="LSHIFT">Left Shift ({'<<'})</SelectItem>
+                    <SelectItem value="RSHIFT">Right Shift ({'>>'})</SelectItem>
                     </SelectContent>
                 </Select>
             </div>
@@ -166,14 +166,17 @@ export function BitwiseOperationsCalculator() {
             </div>
           )}
         </CardContent>
-        {result && (
-          <CardFooter className="flex justify-end gap-2">
-            <Button variant="outline" onClick={handleAddToHistory}>
-              <History className="mr-2 h-4 w-4" /> Save
-            </Button>
-          </CardFooter>
-        )}
+        <CardFooter className="flex justify-between">
+          <Button variant="outline" onClick={handleAddToHistory}>
+            <History className="mr-2 h-4 w-4" />
+            Save to History
+          </Button>
+          <Button onClick={() => result && handleCopyToClipboard(result.dec)}>
+            <Copy className="mr-2 h-4 w-4" />
+            Copy Result
+          </Button>
+        </CardFooter>
       </Card>
     </div>
   );
-}
+};
