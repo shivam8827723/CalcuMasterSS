@@ -10,7 +10,6 @@ import {
   AreaChart,
   Sparkles,
   type LucideIcon,
-  Bot,
   Sigma,
   Pi,
   Percent,
@@ -151,16 +150,5 @@ export const calculatorCategories: CalculatorCategory[] = [
         { name: 'Random Number', path: '/calculators/misc/random', icon: Shuffle, description: 'Generate random numbers.' },
     ],
   },
-  {
-    name: 'AI',
-    icon: Bot,
-    calculators: [
-      {
-        name: 'AI Math Solver',
-        path: '/calculators/ai/math-solver',
-        icon: Bot,
-        description: 'Solve complex math word problems.',
-      },
-    ],
-  },
+
 ];
